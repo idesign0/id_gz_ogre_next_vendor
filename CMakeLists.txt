@@ -35,6 +35,7 @@ ament_vendor(${PROJECT_NAME}
   GLOBAL_HOOK
   PATCHES
     patches/0001-Fix-incomplete-vulkan-linkage.patch
+    patches/0002-fix-xcodebuild-n-xcode26.patch
 )
 
 if(BUILD_TESTING)
