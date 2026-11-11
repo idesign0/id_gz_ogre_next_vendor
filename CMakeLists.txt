@@ -48,6 +48,14 @@ if(CMAKE_SYSTEM_PROCESSOR MATCHES "^(aarch64.*|AARCH64.*|arm64.*|ARM64.*|arm.*|A
   set(EXTRA_CMAKE_FLAGS -DOGRE_SIMD_NEON:BOOL=FALSE  -DOGRE_SIMD_SSE2:BOOL=FALSE)
 endif()
 
+if(APPLE)
+  # dylibs in lib/ (not frameworks) so OGRE-Next.pc and FindGzOGRE2 can find them
+  list(APPEND EXTRA_CMAKE_FLAGS
+    -DOGRE_BUILD_LIBS_AS_FRAMEWORKS:BOOL=OFF
+    -DOGRE_LIB_DIRECTORY:STRING=lib
+    -DOGRE_BUILD_RENDERSYSTEM_METAL:BOOL=ON)
+endif()
+
 ament_vendor(${PROJECT_NAME}
 SATISFIED ${OGRE2_FOUND}
 VCS_URL https://github.com/OGRECave/ogre-next.git
@@ -74,6 +82,7 @@ VCS_URL https://github.com/OGRECave/ogre-next.git
   PATCHES
     patches/0001-Fix-incomplete-vulkan-linkage.patch
     patches/0002-fix-xcodebuild-n-xcode26.patch
+    patches/0003-apple-plugins-in-lib-OGRE-Next.patch
 )
 
 message("OGRE2_FOUND: ${OGRE2_FOUND}")

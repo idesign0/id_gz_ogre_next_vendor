@@ -1,0 +1,15 @@
+--- a/CMake/Utils/OgreConfigTargets.cmake
++++ b/CMake/Utils/OgreConfigTargets.cmake
+@@ -64,11 +64,7 @@
+   if(APPLE AND OGRE_BUILD_PLATFORM_APPLE_IOS)
+     set(OGRE_LIB_RELEASE_PATH "/Release")
+   endif(APPLE AND OGRE_BUILD_PLATFORM_APPLE_IOS)
+-  if (APPLE)
+-    set(OGRE_PLUGIN_PATH "/")
+-  else()
+-    set(OGRE_PLUGIN_PATH "/${OGRE_NEXT_PREFIX}")
+-  endif(APPLE)
++  set(OGRE_PLUGIN_PATH "/${OGRE_NEXT_PREFIX}")
+   set(OGRE_SAMPLE_PATH "/${OGRE_NEXT_PREFIX}/Samples")
+ endif ()
+ 
