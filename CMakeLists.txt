@@ -95,6 +95,13 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+if(APPLE)
+  # The plugin dir gz-rendering compiles in is the build machine's; point it at this install
+  ament_environment_hooks(
+    "${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/ogre2_resource_path.dsv.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/env-hooks/ogre2_resource_path.sh.in")
+endif()
+
 ament_package(
   CONFIG_EXTRAS_POST "gz_ogre_next_vendor-extras.cmake.in"
 )
